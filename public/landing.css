@@ -1,0 +1,55 @@
+body {
+	/*background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("https://images.unsplash.com/photo-1522211988038-6fcbb8c12c7e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");*/
+	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("img/landing.jfif");
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	height: 100vh;
+	box-shadow: inset 20px 20px 35px 35px rgba(0,0,0,0.9);
+	background-attachment: fixed;
+	width: 100%;
+	font-family: Lato;
+	background-repeat: no-repeat;
+}
+
+
+.header-box {
+	width: 90%;
+	height: 60%;
+	background: transparent;
+	color: white;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+}
+
+.header-box h1 {
+	font-weight: 900;
+	font-size: 14vw;
+	line-height: 100%;
+}
+.buttons {
+	margin-top: 30px;
+}
+
+#para-btn {
+	margin: 0.6%;
+	padding: 12px 20px;
+	background: #D82626;
+	width: 100px;
+	height: 50px;
+	border-radius: 5px;
+	color:white;
+	text-transform: uppercase;
+	font-size: 1rem;
+	letter-spacing: 1px;
+}
+
+#para-btn:hover {
+	text-decoration: none;
+	background: 
+}
+@media (max-width: 500px) {
+	.header-box{
+		margin-top: 30%;
+	}	
+}

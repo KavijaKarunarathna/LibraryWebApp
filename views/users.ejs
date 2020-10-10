@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Users</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
+	<link rel="stylesheet" type="text/css" href="/navbar.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+	<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,900;1,700;1,900&display=swap" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="/table.css">
+</head>
+<body id="body">
+<%- include("partials/nav")%>
+<div class="container h-100">
+      <div class="d-flex justify-content-center h-100">
+      	<form action="/users/search" autocomplete="off" METHOD="POST">
+        <div class="searchbar">
+          <input class="search_input" name="search_term" type="text" placeholder="Search by Username or ID">
+          <button class="search_icon"><i class="fas fa-search"></i></button>
+        </div>
+      </div>
+      </form>
+    </div>
+<div class="limiter">
+	<div class="container-table100">
+		<div class="wrap-table100">
+			<div class="table100">
+				<table>
+					<thead>
+						<tr class="table100-head">
+							<th class="column1">Date Joined</th>
+							<th class="column2">User ID</th>
+							<th class="column3">Full Name</th>
+							<th class="column4">Role</th>
+							<th class="column5">Actions</th>
+							<th class="column6">Books Borrowed</th>
+						</tr>
+					</thead>
+					<tbody>
+							<% users.forEach(function(user){ %>
+								<% if (user.fullName != "Admin") {%>
+								<tr>
+									<td class="column1"><%-user.dateJoined%></td>
+									<td class="column2"><%-user.ID%></td>
+									<td class="column3"><%-user.fullName%></td>
+									<td class="column4"><%-user.role%></td>
+									<td class="column5">
+										<form method="POST" action="/user/<%-user._id%>?_method=DELETE">
+										<button class="btn btn-danger">Remove 	&nbsp<i class="fas fa-trash-alt"></i></button>
+										</form>
+									</td>
+									<td class="column6">
+										<% if (user.booksBorrowed.length == 0) { %>
+											<p>No Books Borrowed</p>
+										<% } else { %>
+											<% user.booksBorrowed.forEach(function(book){ %>
+											<div>
+												<span><%-book.name%></span>
+												<a class="btn btn-success" href="/user/<%-user.ID%>/book/<%-book.id%>/return">Return &nbsp<i class="fas fa-exchange-alt"></i></a>
+											</div>
+											<% }) %>
+										<% } %>
+									</td>
+								</tr>
+								<%}%>							
+							<% }) %>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+</script>
+</body>
+</html>

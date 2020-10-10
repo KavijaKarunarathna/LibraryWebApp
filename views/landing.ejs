@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Online Library Web App made with NodeJS and Express">
+  	<meta name="keywords" content="Library, Library Web App, Library Management, Online Library, Kavija's Library">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
+	<link rel="stylesheet" type="text/css" href="/navbar.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+	<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,900;1,700;1,900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="landing.css">
+	<title>Kavija's Library Web App</title>
+</head>
+<body id="body">
+	<%- include("partials/nav")%>
+	<div class="container">
+		<div class="header-box">
+			<h1>Feed the mind.</h1>
+		</div>
+		<div class="buttons">
+			<a id="para-btn" href="/login"><b>Get Started</b></a>
+			<a id="para-btn" href="/show"><b>View Books</b></a>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

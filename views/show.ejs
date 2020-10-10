@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<link rel="stylesheet" type="text/css" href="show.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
+	<link rel="stylesheet" type="text/css" href="/navbar.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+	<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,900;1,700;1,900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+	<title>Books</title>
+</head>
+<body id="body">
+	<%- include("partials/nav")%>
+	<section class="show">
+		<div class="show-container">
+		
+		<div class="genre">
+			<h1><span class="inline-red">F</span>iction</h1>
+			<div class="swiper-container">
+			    <div class="swiper-wrapper">
+			      <%fiction.forEach(function(book){%>
+			      <div class="swiper-slide">   	
+			      	<a href="/book/<%-book.id%>">
+			      		<h4 class="book-text"><%-book.name%></h4>
+			      		<img src="<%-book.image%>">			      		
+			      	</a>
+			      </div>
+			      <% }); %>
+			    </div>
+			    <div class="swiper-button-next" id="swipe"></div>
+			    <div class="swiper-button-prev" id="swipe"></div>
+  			</div>
+		</div>
+
+		<div class="genre">
+			<h1><span class="inline-red">A</span>dventure</h1>
+			<div class="swiper-container">
+			    <div class="swiper-wrapper">
+			      <%adventure.forEach(function(book){%>
+			      <div class="swiper-slide">
+			      	<h4 class="book-text"><%-book.name%></h4>
+			      	<a href="/book/<%-book.id%>"><img src="<%- book.image%>"></a>
+			      </div>
+			      <% }); %>
+			    </div>
+			    <div class="swiper-button-next" id="swipe"></div>
+			    <div class="swiper-button-prev" id="swipe"></div>
+  			</div>
+		</div>
+
+		<div class="genre">
+			<h1><span class="inline-red">R</span>omance</h1>
+			<div class="swiper-container">
+			    <div class="swiper-wrapper">
+			      <%romance.forEach(function(book){%>
+			      <div class="swiper-slide">
+			      	<h4 class="book-text"><%-book.name%></h4>
+			      	<a href="/book/<%-book.id%>"><img src="<%- book.image%>"></a>
+			      </div>
+			      <% }) %>
+			    </div>
+			    <div class="swiper-button-next" id="swipe"></div>
+			    <div class="swiper-button-prev" id="swipe"></div>
+  			</div>
+		</div>
+
+		<div class="genre">
+			<h1><span class="inline-red">H</span>orror</h1>
+			<div class="swiper-container">
+			    <div class="swiper-wrapper">
+			      <%horror.forEach(function(book){%>
+			      <div class="swiper-slide">
+			      	<h4 class="book-text"><%-book.name%></h4>
+			      	<a href="/book/<%-book.id%>"><img src="<%- book.image%>"></a>
+			      </div>
+			      <% }); %>
+			    </div>
+			    <div class="swiper-button-next" id="swipe"></div>
+			    <div class="swiper-button-prev" id="swipe"></div>
+  			</div>
+		</div>
+	</section>
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+ <script>
+    var swiper = new Swiper('.swiper-container', {
+      slidesPerView: 3,
+      spaceBetween: 30,
+      navigation: {
+		nextEl: '.swiper-button-next',
+		prevEl: '.swiper-button-prev',
+		},
+    });
+ </script>
+ 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

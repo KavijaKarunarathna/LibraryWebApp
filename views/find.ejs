@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<link rel="stylesheet" type="text/css" href="/find.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
+	<link rel="stylesheet" type="text/css" href="/navbar.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+	<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,900;1,700;1,900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+	<title>Searching for...</title>
+</head>
+<body id="body">
+	<%- include("partials/nav")%>
+
+	<div class="container">
+	<% if(books.length == 0) { %>
+		<h3 class="display-4">No results found :(</h3>
+	<% } else { %>
+		<h3 class="display-4"><%-books.length%> matching results.</h3>
+	<% } %>
+	<% for(var i=0; i < books.length; i++) {%>
+		<div class="result">
+			<div class="row">
+			<div class="col-9 col-sm-8 col-md-10">
+			<h3><a href="/book/<%-books[i].id%>"><%-books[i].name %></a></h3>
+			<p>Author: <%-books[i].author%></p>
+			<p>Genre: <%-books[i].genre%></p>
+			</div>
+			<div class="col-1 col-md-0"></div>
+			<div class="col-2 col-md-1">
+			<img style="height:120px; " src="<%-books[i].image%>">
+			</div>
+			</div>
+		</div>
+	<% } %>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

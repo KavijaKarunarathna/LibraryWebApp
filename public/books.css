@@ -1,0 +1,53 @@
+#body{
+	background: #212121;
+	font-family: Lato;
+}
+
+.book-row {
+	border-radius: 10px;
+	border: 2px white solid;
+	margin-bottom: 15px;
+	padding: 20px 10px;
+	color:white;
+}
+
+.book-row a,
+.book-row button {
+	margin-right: 30px;
+	margin-top: 5px;
+}
+
+.book-row .title {
+	display: inline;
+	color: white;
+	margin-right: 40px;
+	font-size: 1.3em;
+}
+
+.title:hover {
+	text-decoration: none;
+	color: #dc3545;
+}
+
+.inline-red {
+	color: #dc3545;
+	text-transform: uppercase;
+	font-weight: 700;
+}
+
+.green {
+	color: #28B463;
+	font-weight: 700;
+}
+
+.yellow {
+	color: #ffc107;
+	font-weight: 700;
+}
+
+.btn-outline-warning{
+	margin:0 0 15px 0;
+}
+
+
+

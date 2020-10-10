@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<link rel="stylesheet" type="text/css" href="/book.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
+	<link rel="stylesheet" type="text/css" href="/navbar.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+	<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,900;1,700;1,900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+	<title><%- book.name%></title>
+</head>
+<body id="body">
+	<%- include("partials/nav")%>
+	<div class="container_">
+		<h1 class="display-4"><%-book.name%></h1>
+		<div class="book-container">
+			<div class="book">
+			    <img alt="<%-book.name%>" src="<%-book.image%>"/>
+			</div>
+		</div>
+		<h3><span class="inline-red">Author:</span> <%-book.author%></h3>
+		<h3><span class="inline-red">Genre:</span> <%-book.genre%></h3>
+		<h3><span class="inline-red">Availability: 
+			<%if (book.quantity > 0) { %>
+				<span class="inline-green">
+			<% } else {%>
+				<span class="inline-red">
+			<% } %> 
+			 <i class="fas fa-circle"></i></span></h3>
+		<h3><span class="inline-red">ID:</span> <%-book.libId%></h3>
+		 <% if(user) { %>
+		    <% if(user.isAdmin) { %>
+				<h3><button class="btn btn-lg btn-outline-danger show-lend-form">Lend</button></h3>
+				<form class="lend-form" action="/book/<%-book.id%>/lend" method="POST">
+					<div class="form-group">
+					<label for="to">To</label>
+			    	<input id="to" type="text" class="form-control" placeholder="Enter User ID" name="lend_to_user" required>
+			    	<button class="btn btn-danger">OK</button>
+			  		</div>
+				</form>
+		 	<% } %>
+		 <% } %>
+		 <% if (user && book.quantity > 0) {%>
+			<h3><a href="/user/<%-user.id%>/book/<%-book.id%>/reserve" class="btn btn-lg btn-outline-success">Reserve</a></h3>
+		<%}%>
+	</div>	
+
+	<div class="comment-section">		
+		<h3> Reviews <i class="fas fa-comments"></i><button class="btn btn-outline-danger show-comment-form" >New Review</button> </h3>
+		<div class="comment-form">
+			<form action="/book/<%-book.id%>/comment" method="POST" novalidate>
+				<div class="form-group">
+			    <input type="text" class="form-control" placeholder="New review goes here..." name="comment[text]" required>
+			  	</div>
+			  	<button class="btn btn-outline-danger">Submit</button>
+			</form>
+		</div>
+		<% for (var i = 0; i < book.comments.length; i++) { %>
+		<div class="comment">
+			<small>By: <%- book.comments[i].author.name%><span>Date:<%-book.comments[i].date%></span></small>
+			<p><%-book.comments[i].text%></p></div>
+		<% } %>
+	</div>	
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+	  $(".show-comment-form").click(function(){
+	   $(".comment-form").slideToggle("slow");
+	  });
+	});
+
+	$(document).ready(function(){
+	  $(".show-lend-form").click(function(){
+	   $(".lend-form").slideToggle("slow");
+	   });
+	});
+	</script>
+</body>
+</html>

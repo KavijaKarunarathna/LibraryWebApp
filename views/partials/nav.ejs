@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg navbar-dark nav-trans">
+	  <a class="navbar-brand" href="/show"><i class="fa fa-book-open"></i></a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	  	<ul class="navbar-nav mr-auto">
+	  	</ul>
+	    <ul class="navbar-nav">
+	      
+	     <% if(user) { %>
+		    <% if(user.isAdmin) { %>
+		    <li class="nav-item active">
+		      <a class="nav-link" href="/dashboard">DASHBOARD</a>   
+		    </li>
+		    <li class="nav-item active">
+		      <a class="nav-link" href="/register">Add User</a>   
+		    </li>
+		    <% }%>
+	     <% } %>
+	     <% if(!user) { %>
+	      <li class="nav-item active">
+	        <a class="nav-link" href="/login">Log In</a>
+	      </li>
+	      <% } %>
+	      <% if(user) {%>
+	       <li class="nav-item active">
+	        <a class="nav-link" href="/logout">Logout</a>
+	      </li>
+	      <% } %>
+	    </ul>
+	    <form class="form-inline my-2 my-lg-0" action="/search-book" method="POST">
+	      <input class="form-control mr-sm-2" type="search" placeholder="Search books" aria-label="Search" name="find">
+	      <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
+	    </form>
+	  </div>
+	</nav>
+	<% if (error.length != 0) { %>
+		<div class="container">
+			<div class="alert-red">
+				<%-error%><button class="closebtn-red" onclick="this.parentElement.style.display='none';">&times;</button>
+			</div>
+		</div>
+	<% } %>
+
+	<% if (success.length != 0) { %>
+		<div class="container">
+			<div class="alert-green">
+				<%-success%><button class="closebtn-green" onclick="this.parentElement.style.display='none';">&times;</button>
+			</div>
+		</div>
+	<% } %>

@@ -1,0 +1,23 @@
+#body{
+	background: #212121;
+	font-family: Lato;
+	color: white;
+}
+
+.wink {
+	color:#DAA022;
+}
+
+.tick {
+	color: steelblue;
+}
+
+.container a {
+	color: #D82626;
+	font-size: 1.3em;
+}
+
+.container a:hover {
+	text-decoration: none;
+	color: #F05E5E;
+}

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="dashboard.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
+    <link rel="stylesheet" type="text/css" href="/navbar.css">
+    <link rel="stylesheet" type="text/css" href="/table.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,900;1,700;1,900&display=swap" rel="stylesheet">
+    <title>Dashboard</title>
+</head>
+<body id="body">
+    <%- include("partials/nav")%>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 col-md-2" id="no-pad">
+                <ul class="nav side-nav flex-column">
+                      <li class="nav-item">
+                        <a class="nav-link" id="nav-link" href="/dashboard">Dashboard</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="nav-link" href="/books">Books</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="nav-link" href="/users">Users</a>
+                      </li>
+                    </ul>
+            </div>
+            <div class="col-10">
+                <div class="row">
+                    <div class="col-12 col-sm-5 col-md-4 info-box">
+                        <h3>Students <i class="fas fa-user-graduate"></i></h3>
+                        <p><%-studentCount%></p>
+                    </div>
+                    <div class="col-12 col-sm-5 col-md-4 info-box">
+                        <h3>Staff <i class="fas fa-building"></i></h3>
+                        <p><%-staffCount%></p>
+                    </div>
+                    <div class="col-12 col-sm-5 col-md-3 info-box">
+                        <h3>Books <i class="fas fa-book"></i></h3>
+                        <p><%-bookCount%></p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row charts">
+                            <div class="col-12 col-md-4">
+                                <canvas id="myDoughnutChart" width="400" height="400"></canvas>
+                            </div>      
+                            <div class="col-12 col-md-7">
+                                <canvas id="line-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>      
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-0 col-md-2"></div>
+        <div class="col-12 col-md-10">      
+        <div class="container-table100">
+            <h1 id="reservation-title">Reservations</h1>
+            <div class="wrap-table100">
+                <div class="table100">
+                    <table>
+                        <thead>
+                            <tr class="table100-head">
+                                <th class="column1 reserved" style="width: 15%;">Date Reserved</th>
+                                <th class="column2 reserved" style="width: 20%;">User</th>
+                                <th class="column3 reserved" style="width: 12%;">Book</th>
+                                <th class="column4 reserved" style="width: 15%;">Role</th>
+                                <th class="column5 reserved" style="width: 15%;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                <% reservations.forEach(function(reservation){ %>
+                                    <tr>
+                                    <td class="column1"><%-reservation.Date%></td>
+                                    <td class="column2"><%-reservation.reservedBy.fullName%></td>
+                                    <td class="column3"><%-reservation.bookReserved.name%></td>
+                                    <td class="column4"><%-reservation.reservedBy.role%></td>
+                                    <td class="column5">
+                                        <form method="POST" action="reservation/<%-reservation._id%>?_method=DELETE">
+                                            <button class="btn btn-danger">Remove</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+var ctx = document.getElementById('myDoughnutChart').getContext('2d');
+var myDoughNutChart = new Chart(ctx, {
+    type: 'doughnut',
+        data: {
+        labels: ['Fiction', 'Adventure', 'Romance', 'Horror', 'Fantasy', 'Other'],
+        datasets: [{
+            label: '# of Votes',
+            data:[<%-genreArray[0]%>,<%-genreArray[1]%>,<%-genreArray[2]%>,<%-genreArray[3]%>,<%-genreArray[4]%>,<%-genreArray[5]%>,<%-genreArray[6]%>],
+            backgroundColor: [
+                '#FF0101',
+                '#BC5151',
+                '#F16C03',
+                '#B34E03',
+                '#D81665',
+                '#7F194C'
+            ],
+            borderColor: [
+                '#FF0101',
+                '#BC5151',
+                '#F16C03',
+                '#B34E03',
+                '#D81665',
+                '#7F194C'            ],
+            borderWidth: 1
+        }]
+    },
+   options: { ///  
+   }
+});
+var ctx1 = document.getElementById('line-chart').getContext('2d');
+
+var linechart = new Chart(ctx1, {
+    type: 'line',
+  data: {
+    labels: ["Monday","Tuesday","Wednesday", "Thursday","Friday"],
+    datasets: [{ 
+        data: [8,570,34,32,123,67,34,199],
+        label: "",
+        borderColor: "#D82626",
+        fill: false
+      }
+    ]
+  },
+  options: {
+    title: {
+      display: true,
+      text: 'Books borrowed within the week'
+    }
+  }
+});
+</script>
+</body>
+</html>

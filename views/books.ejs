@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/table.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
+    <link rel="stylesheet" type="text/css" href="/navbar.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,900;1,700;1,900&display=swap" rel="stylesheet">
+	<title>Books</title>
+</head>
+<body id="body">
+	 <%- include("partials/nav")%>
+	 <div class="container h-100">
+      <div class="d-flex justify-content-center h-100">
+      	<form action="/books/search" autocomplete="off" METHOD="POST">
+        <div class="searchbar">
+          <input class="search_input" name="search_term" type="text" placeholder="Search by Name or ID">
+          <button class="search_icon"><i class="fas fa-search"></i></button>
+        </div>
+      </div>
+      </form>
+    </div>
+<div class="limiter">
+	<div class="container-table100">
+		<div class="wrap-table100">
+			<div class="table100">
+				<a href="/book/new" class="btn btn-outline-warning" id="add-btn">Add Book</a>
+				<table>
+					<thead>
+						<tr class="table100-head">
+							<th class="column1">Date Added</th>
+							<th class="column2">Book ID</th>
+							<th class="column3">Book</th>
+							<th class="column4">Author</th>
+							<th class="column5">Genre</th>
+							<th class="column6">In Hand</th>
+						</tr>
+					</thead>
+					<tbody>
+							<% books.forEach(function(book){ %>
+								<tr>
+									<td class="column1 book-col"><%-book.dateAdded%></td>
+									<td class="column2 book-col"><%-book.libId%></td>
+									<td class="column3 book-col"><%-book.name%></td>
+									<td class="column4 book-col"><%-book.author%></td>
+									<td class="column5 book-col"><%-book.genre%></td>
+									<td class="column6 book-col">
+										<% if (book.inHand.length == 0) { %>
+											Not lent
+										<% } else { %>
+											<% book.inHand.forEach(function(user){ %>
+											<div>
+												<span class="inline-red">Username:</span> <%-user.username%>
+											</div>
+											<div>
+												<span class="inline-red">ID:</span> <%-user.ID%>
+											</div>
+											<% }) %>
+										<% } %>
+									</td>
+								</tr>													
+							<% }) %>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

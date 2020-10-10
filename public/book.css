@@ -1,0 +1,268 @@
+#body{
+	/*background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("https://unsplash.com/photos/w8JiSVyjy-8/download?force=true&w=2400");*/
+	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("img/book-back.jpg");
+	font-family: Lato;
+	background-repeat: none;
+	background-size: cover;
+	object-fit: fill;
+}
+
+.book-container {
+  display: flex;
+  justify-content: center;
+  perspective: 1000px;
+}
+
+@keyframes initAnimation {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(-30deg);
+  }
+}
+
+.book {
+  width: 175px;
+  height: 250px;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateY(-30deg);
+  transition: 1s ease;
+  animation: 1s ease 0s 1 initAnimation;
+  margin: 2% 0 5% 0; 
+}
+
+.book:hover {
+  transform: rotateY(0deg);
+}
+
+.book > :first-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: red;
+  width: 175px;
+  height: 250px;
+  transform: translateZ(25px);
+  border-radius: 0 5px 5px 0;
+  box-shadow: 2px 2px 5px #413D3D;
+}
+
+.book::before {
+  position: absolute;
+  content: ' ';
+  background-color: blue;
+  left: 0;
+  top: 3px;
+  width: 48px;
+  height: 244px;
+  transform: translateX(147px) rotateY(90deg);
+  background: linear-gradient(90deg, 
+    #fff 0%,
+    #f9f9f9 5%,
+    #fff 10%,
+    #f9f9f9 15%,
+    #fff 20%,
+    #f9f9f9 25%,
+    #fff 30%,
+    #f9f9f9 35%,
+    #fff 40%,
+    #f9f9f9 45%,
+    #fff 50%,
+    #f9f9f9 55%,
+    #fff 60%,
+    #f9f9f9 65%,
+    #fff 70%,
+    #f9f9f9 75%,
+    #fff 80%,
+    #f9f9f9 85%,
+    #fff 90%,
+    #f9f9f9 95%,
+    #fff 100%
+    );
+}
+
+.book::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: ' ';
+  width: 175px;
+  height: 250px;
+  transform: translateZ(-25px);
+  background-color: #ea0606;
+  border-radius: 0 5px 5px 0;
+  box-shadow: -10px 0 20px 10px #212121;
+}
+
+/*////////////////////////////////////*/
+
+.container_ {
+	border-radius: 20px;
+	border:solid #B72C2C 4px;
+	height: 100%;
+	margin: 2% auto 5% auto;
+	width: 40vw;
+	padding: 20px;
+}
+
+.container_ h1 {
+	text-transform: capitalize;
+	color: white;
+	font-weight: 700;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+.comment-section {
+	width: 60%;
+	margin: 0 auto;
+	color: white;
+	border-radius: 10px;
+}
+
+
+.container_ h3 {
+	text-transform: capitalize;
+	color: white;	
+	text-align: left;
+	margin-left: 15%;
+	margin-right: 15%;
+}
+
+
+@media (max-width: 1100px) {
+	.container_{
+		width: 70vw;
+	}	
+
+	.container_ h1 {
+		font-weight: 15vw
+	}
+
+	.comment-section {
+		width: 80%;
+	}
+
+	.container_ h3{
+		margin-left: 15%;
+		margin-right: 15%;
+	}
+}
+
+@media (max-width: 750px) {
+	.container_{
+		width: 80vw;
+	}	
+
+	.container_ h1 {
+		font-size: 11vw
+	}
+
+	.comment-section {
+		width: 80%;
+	}
+
+	.container_ h3{
+		margin-left: 2%;
+		margin-right: 2%;
+	}
+}
+
+@media (max-width: 500px) {
+	.container_{
+		width: 80vw;
+	}
+
+	.container h1 {
+		font-weight: 10vw
+	}	
+
+	.comment-section {
+		width: 80%;
+	}
+
+	.container_ h3{
+		margin-left: 2%;
+		margin-right: 2%;
+	}
+}
+
+
+
+.inline-red {
+	color: #D82626;
+	font-size: 1.3em;
+	font-weight: 700;
+}
+
+.inline-green {
+	color: #45A342;
+	font-size: 1.2em;
+	font-weight: 700;
+}
+
+/*/////////////////////////////*/
+
+
+.comment-section h3 {
+	background-color: #3F3F3F;
+	width: 100%;
+	border-top-right-radius: 20px;
+	border-top-left-radius: 20px;
+	padding: 2%;
+	font-weight: 700;
+}
+
+.comment {
+	background-color: rgba(52, 52, 52, 0.3);
+	width: 100%;
+	padding:0 15px;
+	border-radius: 5px;
+	margin: 5px 0;
+	font-size: 1.3em;
+	color: #C33939;
+}
+
+.comment small {
+	color: white;
+	font-style: italic;
+	font-weight: bold;
+	font-size: 0.6em;
+}
+
+.comment small span {
+	margin-top: 4px;
+	float: right;
+}
+
+.comment-form {
+	display: none;
+}
+
+.comment-form button{
+	float: right;
+}
+
+.comment-section h3 button {
+	float: right;
+}
+
+.lend-form {
+	display: none;
+	width: 70%;
+	margin: 0 auto 50px auto;
+	color: white;
+	height: 100%;
+}
+
+.lend-form label {
+	font-size: 1.3em;
+	font-weight: 700;
+}
+
+.lend-form button {
+	float: right;
+	margin-top: 10px;
+}
